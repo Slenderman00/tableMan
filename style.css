@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.sortingModal {
+  background-color: gray;
+  border: 1px solid black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.sortingModal .order button {
+  width: 100%;
+}
+
+.sortingModal hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: black;
+  height: 1px;
+  border: none;
+}
+
+.sortingModal .active input {
+  margin-bottom: 10px;
+}
+
+.sortingModal .search input {
+  width: 100%;
+}
+
+.tableman th {
+  border: 1px solid black;
+  padding: 5px;   
+}
+
+th .content {
+  /* make this a flexbox*/
+  display: flex;
+  flex-direction: row;
+  justify-content: normal;
+}
+
+.tableman .content .name {
+  /* make clickable */
+  cursor: pointer;
+  width: 100%;
+  user-select: none;
+}
+
+.sortable::after {
+  content: "⇅";
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.tableman .resizeBar {
+  width: 10px;
+  height: 20px;
+  cursor: col-resize;
+  margin-left: auto;
+  position: relative;
+  left: 10px;
+}
+
+.tableman td {
+  border: 1px solid black;
+}
+
+.hidecol {
+  display: table-cell;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 20px !important;
+}
