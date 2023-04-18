@@ -117,6 +117,8 @@ class Tableman {
         for (let i = 0; i < this.tableData.length; i++) {
             let tr = document.createElement("tr");
             for (let j = 0; j < this.tableStructure.length; j++) {
+                
+
                 let td = document.createElement("td");
                 if (this.tableStructure[j].onpress) {
                     td.classList.add("onpress");
@@ -124,6 +126,7 @@ class Tableman {
                         this.tableStructure[j].onpress(this.tableData[i]);
                     });
                 }
+
                 if (!this.tableStructure[j].hidden) {
                     if (this.tableStructure[j].modifier) {
                         td.innerHTML = this.tableStructure[j].modifier(this.tableData[i]);
@@ -131,6 +134,11 @@ class Tableman {
                         td.innerHTML = this.tableData[i][this.tableStructure[j].name];
                     }
                 }
+
+                if(this.tableStructure[j].name == '_index') {
+                    td.innerHTML = i + 1;
+                }
+
                 tr.appendChild(td);
             }
             tbody.appendChild(tr);
@@ -208,7 +216,10 @@ class Tableman {
             input.classList.add("searchInput");
             input.setAttribute("type", "text");
             input.setAttribute("placeholder", "Search");
-            searchBar.appendChild(input);
+
+            if(this.tableStructure[i].searchable) {
+                searchBar.appendChild(input);
+            }
 
             nameDiv.innerHTML = this.tableStructure[i].newName;
             if (this.tableStructure[i].sortable) {
@@ -502,6 +513,7 @@ class Tableman {
 }
 
 table = new Tableman();
+table.addColumn("_index", "string", sortable =  false , searchable =  false , onpress = null, modifier = null, newname = "Index");
 table.addColumn("Name", "string", sortable = true, searchable = true, onpress = null, modifier = null);
 table.addColumn("Age", "number", sortable = true, searchable = true, onpress = null, modifier = null);
 table.addColumn("City", "string", sortable = true, searchable = true, onpress = null, modifier = null);
